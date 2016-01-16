@@ -1,0 +1,38 @@
+<template name="modalEditor">
+	{{#if currentUser}}
+		<div data-modal-marker >
+			{{#afModal classes="btn-floating btn-small blue" collection=collection operation="update" doc=id}}
+				<i class="material-icons">mode_edit</i>
+			{{/afModal}}
+		</div>
+	{{/if}}
+</template>
+
+<template name="modalGlobalEditor">
+	{{#if currentUser}}
+		<div class="fixed-action-btn {{settings.direction}}" data-modal-global>
+			<a class="btn-floating btn-{{settings.size}} {{settings.color}}">
+				<i class="large material-icons">{{settings.icon}}</i>
+			</a>
+			<ul>
+				{{#each settings.collections}}
+					<li>
+						{{#if canShow}}
+							{{#afModal 
+								classes=classes
+								collection=collection 
+								operation="insert"
+								prompt=prompt
+								title=collection
+								omitFields=getHiddenFields
+							}}
+						
+							<i class="material-icons">{{icon}}</i>
+							{{/afModal}}
+						{{/if}}
+					</li>
+				{{/each}}
+			</ul>
+		</div>
+	{{/if}}
+</template>
